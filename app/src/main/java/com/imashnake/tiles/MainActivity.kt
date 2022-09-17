@@ -1,5 +1,7 @@
 package com.imashnake.tiles
 
+import android.graphics.Color
+import android.graphics.ColorSpace
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,7 +12,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.colorspace.ColorSpaces
 import androidx.compose.ui.unit.dp
 import com.imashnake.tiles.ui.theme.TilesTheme
@@ -46,24 +47,29 @@ class MainActivity : ComponentActivity() {
                     MaterialTheme.colorScheme.inverseOnSurface
                 )
 
-                val orderedColors = wallpaperColors.sortedBy { it.value }
+                val horizontal = 7
 
-                val something = orderedColors.map { color ->
-                    List(7) { index ->
-                        color.copy(alpha = ((index.toFloat() + 1f)/7f))
+                val orderedColors = wallpaperColors.sortedBy { it.value }.toSet()
+
+                val flatAlphaColors = orderedColors.map { color ->
+                    List(horizontal) { index ->
+                        color.copy(alpha = ((index.toFloat() + 1f)/horizontal.toFloat()))
                     }
                 }.flatten()
 
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(7)
-                ) {
-                    items(something) { color ->
-                        Box(
-                            modifier = Modifier
-                                .background(color)
-                                .height(20.dp)
-                                .width(20.dp)
-                        ) {  }
+                Box(Modifier.fillMaxSize()) {
+                    LazyVerticalGrid(
+                        columns = GridCells.Fixed(horizontal),
+                        modifier = Modifier.fillMaxSize(),
+                        userScrollEnabled = false
+                    ) {
+                        items(flatAlphaColors) { color ->
+                            Box(
+                                modifier = Modifier
+                                    .background(color)
+                                    .height(20.dp)
+                            ) { }
+                        }
                     }
                 }
             }
