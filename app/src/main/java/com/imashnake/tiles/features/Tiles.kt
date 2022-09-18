@@ -21,7 +21,7 @@ import java.lang.NullPointerException
 
 @ExperimentalFoundationApi
 @Composable
-fun Tiles() {
+fun Tiles(modifier: Modifier) {
     val wallpaperColors = listOf(
         MaterialTheme.colorScheme.background,
         MaterialTheme.colorScheme.onPrimary,
@@ -92,7 +92,7 @@ fun Tiles() {
         }
     )
 
-    Box(Modifier.fillMaxSize()) {
+    Box(modifier.fillMaxSize()) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(horizontal),
             state = state.gridState,
@@ -103,7 +103,8 @@ fun Tiles() {
                 .fillMaxSize()
                 .padding(20.dp)
                 .reorderable(state)
-                .detectReorderAfterLongPress(state)
+                .detectReorderAfterLongPress(state),
+            userScrollEnabled = false
         ) {
             items(data.value, { it.second.toString() }) { pair ->
                 ReorderableItem(
