@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.imashnake.tiles.ui.theme.TilesTheme
 import org.burnoutcrew.reorderable.*
 
-private val TAG = "ColorSwap"
+private const val TAG = "ColorSwap"
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,7 +116,7 @@ class MainActivity : ComponentActivity() {
                                 state,
                                 key = pair.second,
                                 defaultDraggingModifier = Modifier
-                            ) { isDragging ->
+                            ) {
                                 Box(
                                     modifier = Modifier
                                         .padding(2.dp)
@@ -125,13 +125,6 @@ class MainActivity : ComponentActivity() {
                                         .height((LocalConfiguration.current.screenWidthDp / horizontal).dp)
                                         .fillMaxWidth()
                                         .detectReorderAfterLongPress(state)
-//                                        .pointerInput(Unit) {
-//                                            detectTapGestures(
-//                                                onLongPress = {
-//
-//                                                }
-//                                            )
-//                                        }
                                 ) { }
                             }
                         }
