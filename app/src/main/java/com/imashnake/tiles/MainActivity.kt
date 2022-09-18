@@ -80,7 +80,6 @@ class MainActivity : ComponentActivity() {
                                 initialFromColorPair = Pair(this[from.index].first, this[from.index].second)
                                 isFirstCheck = false
                             }
-                            Log.d(TAG, "initialFromColor: $")
 
                             val temp = this[to.index]
                             this[to.index] = initialFromColorPair
@@ -100,6 +99,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 )
+
                 Box(Modifier.fillMaxSize()) {
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(horizontal),
