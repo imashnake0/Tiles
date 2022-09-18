@@ -68,7 +68,7 @@ class MainActivity : ComponentActivity() {
 
                 val flatPairs = flatAlphaColors.map {
                     Pair(it, flatAlphaColors.indexOf(it))
-                }
+                }.shuffled()
 
                 val data = remember { mutableStateOf(flatPairs) }
                 var initialFromColorPair = Pair(Color.Unspecified, -1)
