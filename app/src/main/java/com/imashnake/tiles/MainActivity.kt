@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -23,6 +24,7 @@ import org.burnoutcrew.reorderable.*
 
 private const val TAG = "ColorSwap"
 
+@ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,7 +117,7 @@ class MainActivity : ComponentActivity() {
                             ReorderableItem(
                                 state,
                                 key = pair.second,
-                                defaultDraggingModifier = Modifier
+                                defaultDraggingModifier = Modifier.animateItemPlacement()
                             ) {
                                 Box(
                                     modifier = Modifier
